@@ -1,2 +1,5 @@
-# react-go-app
-Basic web app using React in the frontend and Go in the backend
+# React Go App
+Basic web apps using React and Go
+
+## Posts App
+Basic React only Front End Web Application
