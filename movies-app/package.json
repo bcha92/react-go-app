@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "react": "^18.1.0",
+    "react-confirm-alert": "^2.8.0",
     "react-dom": "^18.1.0",
     "react-router-dom": "^5.3.1",
     "react-scripts": "5.0.1"
