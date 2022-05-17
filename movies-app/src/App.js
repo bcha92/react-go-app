@@ -10,6 +10,8 @@ import Genres from "./components/Genres";
 import OneGenre from "./components/OneGenre";
 import EditMovie from "./components/EditMovie";
 import Login from "./components/Login";
+import GraphQL from "./components/GraphQL";
+import OneMovieGraphQL from "./components/OneMovieGraphQL";
 
 export default class App extends Component {
   constructor(props) {
@@ -80,6 +82,9 @@ export default class App extends Component {
                       <Link to="/admin">Manage Catalogue</Link>
                     </li>
                   </Fragment>}
+                  <li className="list-group-item">
+                    <Link to="/graphql">GraphQL</Link>
+                  </li>
                 </ul>
 
                 <pre>
@@ -91,11 +96,15 @@ export default class App extends Component {
             <div className="col-md-10">
               <Switch>
                 <Route path="/movies/:id" component={OneMovie} />
+                <Route path="/moviesgraphql/:id" component={OneMovieGraphQL} />
                 <Route path="/movies">
                   <Movies />
                 </Route>
   
                 <Route path="/genre/:id" component={OneGenre} />
+                <Route exact path="/graphql">
+                  <GraphQL />
+                </Route>
 
                 <Route exact path="/login" component={
                   props => <Login {...props} handleJWTChange={this.handleJWTChange} />

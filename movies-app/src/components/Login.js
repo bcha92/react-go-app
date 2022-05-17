@@ -59,7 +59,6 @@ export default class Login extends Component {
                         }
                     });
                 } else {
-                    console.log(data);
                     this.handleJWTChange(Object.values(data)[0]);
                     window.localStorage.setItem("jwt", JSON.stringify(Object.values(data)[0]));
                     this.props.history.push({

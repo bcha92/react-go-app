@@ -11,7 +11,6 @@ export default class Genres extends Component {
     componentDidMount() {
         fetch("http://localhost:4000/v1/genres") // fetch go backend
             .then(response => {
-                console.log("Status code is", response.status)
                 if (response.status !== "200") { // if status is not OK
                     let err = Error;
                     err.message = "Invalid response code: " + response.status;

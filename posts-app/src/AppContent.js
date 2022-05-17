@@ -18,10 +18,6 @@ export default class AppContent extends Component {
             })
     }
 
-    clickedItem = (x) => {
-        console.log("clicked", x)
-    }
-
     render() {
         return (
             <div>
@@ -38,7 +34,7 @@ export default class AppContent extends Component {
 
                 <ul>{this.props.posts.map(c =>
                     <li key={c.id}>
-                        <a href="#!" onClick={this.clickedItem(c.id)}>
+                        <a href="#!">
                             {c.title}
                         </a>
                     </li>

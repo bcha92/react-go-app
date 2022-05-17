@@ -11,7 +11,6 @@ import (
 	"os"
 	"time"
 
-	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 )
 
@@ -40,15 +39,6 @@ type application struct {
 	config config
 	logger *log.Logger
 	models models.Models
-}
-
-// Load Postgres .env variables // godotenv package load
-func envVar(key string) string {
-	err := godotenv.Load(".env")
-	if err != nil {
-		log.Fatalf("Error loading .env file")
-	}
-	return os.Getenv(key)
 }
 
 func main() {

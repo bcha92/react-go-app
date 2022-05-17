@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 
-export default class OneMovie extends Component {
+export default class OneMovieGraphQL extends Component {
     state = {
         movie: {},
         isLoaded: false,
@@ -8,25 +8,34 @@ export default class OneMovie extends Component {
     };
 
     componentDidMount() {
-        fetch("http://localhost:4000/v1/movie/" + this.props.match.params.id) // fetch go backend
-            .then(response => {
-                if (response.status !== "200") { // if status is not OK
-                    let err = Error;
-                    err.message = "Invalid response code: " + response.status;
-                    this.setState({ error: err })
-                }
-                return response.json(); // return json
-            })
-            .then(json => {
+        const payload = `
+        {
+            movie(id: "${this.props.match.params.id}") {
+                id
+                title
+                runtime
+                year
+                description
+                release_date
+                rating
+                mpaa_rating
+            }
+        }`;
+
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        const requestOptions = {
+            method: "POST",
+            body: payload,
+            headers: myHeaders,
+        }
+
+        fetch("http://localhost:4000/v1/graphql", requestOptions)
+            .then(response => response.json())
+            .then(data => {
                 this.setState({
-                    movie: json.movie,
+                    movie: data.data.movie,
                     isLoaded: true,
-                },
-                error => { // error catch
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
                 });
             });
     }
@@ -49,6 +58,12 @@ export default class OneMovie extends Component {
             return (
                 <Fragment>
                     <h2>Movie: {movie.title} ({movie.year})</h2>
+
+                    {movie.poster !== "" && (
+                        <div>
+                            <img src={`https://image.tmdb.org/t/p/w200${movie.poster}`} alt="poster" />
+                        </div>
+                    )}
 
                     <div className="float-start">
                         <small>Rating: {movie.mpaa_rating}</small>
