@@ -10,7 +10,7 @@ export default class OneGenre extends Component {
     }
 
     componentDidMount() {
-        fetch("http://localhost:4000/v1/movies/" + this.props.match.params.id) // fetch go backend
+        fetch(`${process.env.REACT_APP_API_URL}/v1/movies/` + this.props.match.params.id) // fetch go backend
             .then(response => {
                 if (response.status !== "200") { // if status is not OK
                     let err = Error;
